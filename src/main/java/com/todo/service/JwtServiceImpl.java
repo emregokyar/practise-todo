@@ -48,18 +48,12 @@ public class JwtServiceImpl implements JwtService {
     }
 
     /**
-     *  This is mostly deprecated
-     *  Parses the jwt token and retrieves all the claims (payload data - user info)
-    private Claims extractAllClaims(String token) {
-        return Jwts.parser() // Create a jwt parser
-                .setSigningKey(getSignInKey())// Set sing in a key to verify signature
-                .build()
-                .parseClaimsJws(token) // Parses the token(jws) to jwt
-                .getBody(); // Get body - payload
-    }
-    **/
-
-    // Parses the jwt token and retrieves all the claims (payload data - user info)
+     * Parses the jwt token and retrieves all the claims (payload data - user info)
+     * Some parts of the code was deprecated
+     * setSigningKey(getSignInKey()) method was renamed to verifyWith(getSignInKey())
+     * parseClaimsJws(token) method was renamed to parseSignedClaims(token)
+     * getBody() method was renamed to getPayload()
+     **/
     private Claims extractAllClaims(String token) {
         return Jwts.parser() // Create a jwt parser
                 .verifyWith(getSignInKey())// Set sing in a key to verify signature
