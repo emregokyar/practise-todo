@@ -63,7 +63,13 @@ public class SecurityConfig {
 
         // Authorization requests
         httpSecurity.authorizeHttpRequests(configurer ->
-                configurer.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**", "/docs/**").permitAll()
+                configurer.requestMatchers(
+                        "/auth/**",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**",
+                        "/webjars/**",
+                        "/docs/**").permitAll()
         );
 
         // Disabling CSRF calls
@@ -76,8 +82,8 @@ public class SecurityConfig {
         // Every request must carry its own authentication via a JWT
         httpSecurity.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        /**
-         *  jwtAuthenticationFilter runs first → it checks for a JWT in the Authorization header.
+        /*
+         * jwtAuthenticationFilter runs first → it checks for a JWT in the Authorization header.
          * If valid → it authenticates the user and sets the authentication in SecurityContextHolder.
          * Then UsernamePasswordAuthenticationFilter (and others) see the user as already authenticated.
          */
