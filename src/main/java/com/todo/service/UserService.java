@@ -1,7 +1,8 @@
 package com.todo.service;
 
-import com.todo.entity.User;
+import com.todo.response_dto.UserResponse;
 
 public interface UserService {
-    User getUserInfo();
+    UserResponse getUserInfo();
+    void deleteUser();
 }

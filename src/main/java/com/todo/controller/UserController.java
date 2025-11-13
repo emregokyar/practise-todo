@@ -1,9 +1,10 @@
 package com.todo.controller;
 
-import com.todo.entity.User;
+import com.todo.response_dto.UserResponse;
 import com.todo.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,12 @@ public class UserController {
     }
 
     @GetMapping("/info")
-    public User getUserInfo() {
+    public UserResponse getUserInfo() {
         return userService.getUserInfo();
+    }
+
+    @DeleteMapping
+    public void deleteUser() {
+        userService.deleteUser();
     }
 }
