@@ -70,6 +70,7 @@ public class SecurityConfig {
                         "/swagger-resources/**",
                         "/webjars/**",
                         "/docs/**").permitAll()
+                        .anyRequest().authenticated() // any other request should be authenticated
         );
 
         // Disabling CSRF calls
