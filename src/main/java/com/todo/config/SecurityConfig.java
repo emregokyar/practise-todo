@@ -64,12 +64,13 @@ public class SecurityConfig {
         // Authorization requests
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer.requestMatchers(
-                        "/auth/**",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**",
-                        "/swagger-resources/**",
-                        "/webjars/**",
-                        "/docs/**").permitAll()
+                                "/auth/**",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-resources/**",
+                                "/webjars/**",
+                                "/docs/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated() // any other request should be authenticated
         );
 
